@@ -1,190 +1,258 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="theme-warm font-cuaderno">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de María del Rosario Presedo Valenzuela, Desarrolladora Front-end con formación en seguridad informática. Miembro de Nexo Studio, UADE 2026.">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio · María del Rosario Presedo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/styles.css">
+    <meta name="description" content="Portfolio de María del Rosario Presedo Valenzuela - Desarrolladora Front-end en Nexo Studio, UADE 2026." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/styles.css" />
 </head>
-<body>
+<body class="paper min-h-screen">
 
-    <header class="site-header">
+    <!-- Three-hole punch decoration -->
+    <div class="holes" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
 
-        <nav class="site-nav">
-            <div class="container nav-inner">
-                <a class="nav-logo" href="index.html">MRPV</a>
-                <ul class="nav-links" role="list">
-                    <li><a class="activo" href="index.html">Inicio</a></li>
-                    <li><a href="intereses.html">Intereses</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </div>
+    <!-- ============ NAV ============ -->
+    <header class="relative z-10">
+        <nav class="max-w-5xl mx-auto px-6 md:pl-28 pt-8 pb-4 flex items-center justify-between">
+            <a href="index.html" class="handwritten text-4xl md:text-5xl leading-none">
+                MRPV<span class="text-[color:var(--margin-red)]">.</span>
+            </a>
+            <ul class="flex gap-5 md:gap-8 items-center" role="list">
+                <li><a href="index.html" class="nav-link active">inicio</a></li>
+                <li><a href="intereses.html" class="nav-link">intereses</a></li>
+                <li><a href="contacto.html" class="nav-link">contacto</a></li>
+            </ul>
         </nav>
-
-        <section class="hero">
-            <div class="container">
-                <div class="hero-inner">
-
-                    <div class="hero-text">
-                        <p class="eyebrow">✦ Desarrolladora Front-end &middot; <a class="eyebrow-link" href="https://mrosariopresedo.github.io/nexo-studio/" target="_blank" rel="noopener noreferrer">Nexo Studio</a></p>
-                        <h1>María del Rosario<br>Presedo Valenzuela</h1>
-                        <p class="hero-lead">Desarrolladora Front-end con formación en seguridad informática. Construyo interfaces accesibles, responsivas y robustas — porque el código bien escrito es también código seguro.</p>
-                        <div class="hero-actions">
-                            <a class="btn-primary" href="contacto.html">Hablemos</a>
-                            <a class="btn-ghost" href="intereses.html">Ver intereses</a>
-                        </div>
-                    </div>
-
-                    <div class="hero-visual">
-                        <figure class="avatar-frame">
-                            <img
-                                src="img/infografia.jpg"
-                                alt="Infografía personal de María del Rosario Presedo Valenzuela, Desarrolladora Front-end y miembro de Nexo Studio">
-                        </figure>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
     </header>
 
-    <main>
+    <!-- ============ HERO ============ -->
+    <section class="relative max-w-5xl mx-auto px-6 md:pl-28 pt-8 pb-16">
 
-        <!-- SOBRE MÍ -->
-        <section class="section">
-            <div class="container">
-                <div class="section-head">
-                    <span class="section-label">Sobre mí</span>
-                    <h2>Desarrollo front-end con criterio<br>de seguridad</h2>
-                    <p>Mi foco es construir interfaces sólidas desde la estructura del código, aplicando buenas prácticas que protegen tanto la experiencia como los datos.</p>
-                </div>
+        <!-- doodle arrow -->
+        <svg class="doodle hidden md:block" style="top: 30px; right: 30px; width:120px;" viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M5 70 Q 30 5, 90 30" />
+            <path d="M75 22 L 90 30 L 82 44" />
+        </svg>
 
-                <article class="about-grid">
-                    <div class="about-text">
-                        <p>Soy <strong>desarrolladora front-end</strong> en Nexo Studio, donde construyo interfaces con HTML5 y CSS sin frameworks, con foco en semántica, accesibilidad y diseño responsivo.</p>
-                        <p>Mi formación en <strong>seguridad informática</strong> me da una perspectiva que pocas desarrolladoras front-end tienen: entiendo los vectores de ataque del lado del cliente, sé qué datos no deben exponerse en el DOM, y escribo código que es robusto por diseño — no por suerte. Esa combinación es mi diferencial dentro del equipo.</p>
+        <p class="font-mono text-xs uppercase tracking-widest text-[color:var(--ink-soft)] mb-4">
+            ✦ portfolio · 2026 · uade
+        </p>
 
-                        <div class="stats">
-                            <div class="stat">
-                                <span class="stat-icon">🏗️</span>
-                                <strong class="stat-title">Estructura</strong>
-                                <p>HTML5 semántico y accesible como base de todo proyecto.</p>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-icon">🎨</span>
-                                <strong class="stat-title">Diseño</strong>
-                                <p>CSS responsivo sin frameworks: puro, limpio y mantenible.</p>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-icon">🔒</span>
-                                <strong class="stat-title">Seguridad</strong>
-                                <p>Perspectiva de seguridad informática aplicada al código front-end.</p>
-                            </div>
-                        </div>
-                    </div>
+        <h1 class="handwritten text-[64px] md:text-[112px] leading-[0.9] mb-6">
+            hola, soy<br/>
+            <span class="marker">María</span> del Rosario<br/>
+            Presedo <span class="text-[color:var(--margin-red)]">✿</span>
+        </h1>
 
-                    <figure class="about-media">
-                        <img
-                            src="img/infografia.jpg"
-                            alt="Infografía con el perfil profesional y competencias clave de María del Rosario Presedo">
-                        <figcaption>Perfil profesional · Nexo Studio, 2026</figcaption>
-                    </figure>
-                </article>
-            </div>
-        </section>
+        <div class="grid md:grid-cols-[1.4fr_1fr] gap-10 items-start mt-10">
+            <div class="space-y-5 text-lg md:text-xl text-[color:var(--ink-soft)] leading-relaxed">
+                <p>
+                    Hago <em class="not-italic font-semibold text-[color:var(--ink)]">desarrollo front-end</em>
+                    en <a class="ink-link" href="https://mrosariopresedo.github.io/nexo-studio/" target="_blank" rel="noopener noreferrer">Nexo Studio</a>
+                    y estudio <span class="marker-pink">seguridad informática</span> en UADE.
+                </p>
+                <p>
+                    Me gusta el código que se entiende leyéndolo, las interfaces que no se rompen,
+                    y pensar en quién va a usar lo que hago.
+                </p>
 
-        <!-- COMPETENCIAS -->
-        <section class="section alt-strip">
-            <div class="container">
-                <div class="section-head">
-                    <span class="section-label">Competencias clave</span>
-                    <h2>Front-end y seguridad:<br>dos miradas, un solo código</h2>
-                    <p>Habilidades que combinan desarrollo de interfaces con criterio de seguridad informática para construir proyectos más sólidos.</p>
-                </div>
-                <div class="cards">
-                    <article class="card">
-                        <span class="card-icon">🏗️</span>
-                        <h3>Front-end semántico</h3>
-                        <p>HTML5 estructurado con etiquetas de significado real: la base de la accesibilidad, el SEO y un código más difícil de explotar.</p>
-                    </article>
-                    <article class="card">
-                        <span class="card-icon">🎨</span>
-                        <h3>CSS y diseño responsivo</h3>
-                        <p>Interfaces que se adaptan a cualquier dispositivo con <code>@media</code> queries, <code>inline-block</code> y el Modelo de Caja — sin frameworks.</p>
-                    </article>
-                    <article class="card">
-                        <span class="card-icon">🔒</span>
-                        <h3>Seguridad en el cliente</h3>
-                        <p>Conocimiento de vectores de ataque front-end: XSS, exposición de datos en el DOM, y atributos de seguridad como <code>rel="noopener"</code>.</p>
-                    </article>
-                    <article class="card">
-                        <span class="card-icon">♿</span>
-                        <h3>Accesibilidad web</h3>
-                        <p>Código inclusivo con <code>alt</code> descriptivos, jerarquía semántica y contraste adecuado. La accesibilidad protege a los usuarios más vulnerables.</p>
-                    </article>
-                    <article class="card">
-                        <span class="card-icon">📋</span>
-                        <h3>Documentación técnica</h3>
-                        <p>README detallados, código comentado y estándares que facilitan auditorías de seguridad, mantenimiento y trabajo colaborativo.</p>
-                    </article>
-                    <article class="card">
-                        <span class="card-icon">🔗</span>
-                        <h3>Puente desarrollo-seguridad</h3>
-                        <p>Capacidad de traducir requisitos de seguridad en decisiones concretas de código, cerrando brechas antes de que lleguen a producción.</p>
-                    </article>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="contacto.html" class="sticker">hablemos →</a>
+                    <a href="intereses.html" class="sticker outline">qué me gusta</a>
                 </div>
             </div>
-        </section>
 
-        <!-- NEXO STUDIO -->
-        <aside class="section">
-            <div class="container">
-                <div class="nexo-card">
-                    <div class="nexo-left">
-                        <p class="nexo-label">Agencia académica</p>
-                        <h4>Nexo Studio</h4>
-                        <p>Somos un equipo de diseñadoras, desarrolladoras y estrategas digitales. Como desarrolladora front-end del equipo, construyo las interfaces que nuestros clientes ven y usan — con criterio técnico y mirada de seguridad.</p>
-                    </div>
-                    <div class="nexo-right">
-                        <div class="nexo-tags">
-                            <span class="tag">Seguridad digital</span>
-                            <span class="tag">Desarrollo front-end</span>
-                            <span class="tag">Diseño responsivo</span>
-                            <span class="tag">Accesibilidad</span>
-                        </div>
-                        <p class="nexo-role">Rol: <strong>Desarrolladora Front-end</strong></p>
-                        <a class="btn-nexo" href="https://mrosariopresedo.github.io/nexo-studio/" target="_blank" rel="noopener noreferrer">Visitar Nexo Studio ↗</a>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- CTA -->
-        <section class="section">
-            <div class="container">
-                <div class="cta-box">
-                    <h2>¿Hablamos?</h2>
-                    <p>Si querés conversar sobre proyectos, interfaces o la intersección entre front-end y seguridad digital, escribime.</p>
-                    <div class="hero-actions">
-                        <a class="btn-primary" href="contacto.html">Contactar</a>
-                        <a class="btn-ghost" href="intereses.html">Conocer más</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container footer-inner">
-            <p class="footer-brand">MRPV &middot; <a href="https://mrosariopresedo.github.io/nexo-studio/" target="_blank" rel="noopener noreferrer">Nexo Studio</a></p>
-            <p><strong>Curso:</strong> Diseño y Desarrollo Web &mdash; 2026</p>
-            <p><strong>Email:</strong> <a href="mailto:mpresedo@uade.edu.ar">mpresedo@uade.edu.ar</a></p>
+            <!-- Polaroid -->
+            <figure class="polaroid relative max-w-[320px] mx-auto md:ml-auto rotate-r">
+                <span class="tape tl" aria-hidden="true"></span>
+                <img src="img/infografia.jpg" alt="Infografía personal de María del Rosario Presedo" />
+                <figcaption>yo, en versión infografía ✿</figcaption>
+            </figure>
         </div>
+    </section>
+
+    <!-- ============ SOBRE MÍ ============ -->
+    <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-16">
+        <div class="flex items-baseline gap-4 mb-8">
+            <span class="sec-num">01</span>
+            <h2 class="handwritten text-5xl md:text-6xl">
+                <span class="scribble-underline">sobre mí</span>
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+            <article class="space-y-4 text-lg leading-relaxed">
+                <p>
+                    Soy <strong>desarrolladora front-end</strong> en Nexo Studio. Construyo interfaces
+                    con HTML5 y CSS sin frameworks, con foco en semántica, accesibilidad y diseño responsivo.
+                </p>
+                <p>
+                    Mi formación en <span class="marker">seguridad informática</span> me da una mirada
+                    que pocas devs front-end tienen: entiendo los vectores de ataque del lado del cliente,
+                    sé qué datos no deben exponerse en el DOM, y escribo código robusto por diseño.
+                </p>
+                <p class="font-mono text-sm text-[color:var(--ink-soft)] pt-2">
+                    // ese cruce es mi diferencial dentro del equipo.
+                </p>
+            </article>
+
+            <div class="relative grid grid-cols-2 gap-4">
+                <div class="postit tilt-l">
+                    <div class="text-3xl mb-1">🏗️</div>
+                    <strong class="block text-2xl mb-1">estructura</strong>
+                    <p class="font-[var(--font-body)] text-base leading-snug font-normal" style="font-family: var(--font-body)">HTML5 semántico y accesible.</p>
+                </div>
+                <div class="postit green tilt-r">
+                    <div class="text-3xl mb-1">🎨</div>
+                    <strong class="block text-2xl mb-1">diseño</strong>
+                    <p class="font-[var(--font-body)] text-base leading-snug font-normal" style="font-family: var(--font-body)">CSS responsivo sin frameworks.</p>
+                </div>
+                <div class="postit coral tilt-r col-span-2">
+                    <div class="text-3xl mb-1">🔒</div>
+                    <strong class="block text-2xl mb-1">seguridad</strong>
+                    <p class="font-[var(--font-body)] text-base leading-snug font-normal" style="font-family: var(--font-body)">Perspectiva de seguridad informática aplicada al front-end.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ COMPETENCIAS ============ -->
+    <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-16">
+        <div class="flex items-baseline gap-4 mb-2">
+            <span class="sec-num">02</span>
+            <h2 class="handwritten text-5xl md:text-6xl">
+                cosas que <span class="marker-pink">sé hacer</span>
+            </h2>
+        </div>
+        <p class="ml-0 md:ml-[88px] mb-10 text-[color:var(--ink-soft)] text-lg max-w-xl">
+            Front-end + seguridad. Dos miradas, un solo código.
+        </p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <article class="note-card tilt-l">
+                <div class="text-3xl mb-2">🏗️</div>
+                <h3 class="handwritten text-3xl mb-2">front-end semántico</h3>
+                <p class="text-base leading-snug">HTML5 con etiquetas de significado real. La base de la accesibilidad, el SEO y un código difícil de explotar.</p>
+            </article>
+
+            <article class="note-card tilt-r">
+                <div class="text-3xl mb-2">🎨</div>
+                <h3 class="handwritten text-3xl mb-2">css y responsivo</h3>
+                <p class="text-base leading-snug">Interfaces que se adaptan con <code class="font-mono text-sm bg-[color:var(--highlight)] px-1">@media</code>, modelo de caja, sin frameworks.</p>
+            </article>
+
+            <article class="note-card tilt-l">
+                <div class="text-3xl mb-2">🔒</div>
+                <h3 class="handwritten text-3xl mb-2">seguridad en cliente</h3>
+                <p class="text-base leading-snug">Vectores de ataque front-end: XSS, exposición de datos en el DOM, atributos como <code class="font-mono text-sm bg-[color:var(--highlight)] px-1">rel="noopener"</code>.</p>
+            </article>
+
+            <article class="note-card dashed tilt-r">
+                <div class="text-3xl mb-2">♿</div>
+                <h3 class="handwritten text-3xl mb-2">accesibilidad</h3>
+                <p class="text-base leading-snug">Código inclusivo: <code class="font-mono text-sm">alt</code> descriptivos, jerarquía semántica, contraste. Proteger a los más vulnerables.</p>
+            </article>
+
+            <article class="note-card tilt-l">
+                <div class="text-3xl mb-2">📋</div>
+                <h3 class="handwritten text-3xl mb-2">documentación</h3>
+                <p class="text-base leading-snug">README detallados y código comentado. Facilita auditorías, mantenimiento y trabajo en equipo.</p>
+            </article>
+
+            <article class="note-card dashed tilt-r">
+                <div class="text-3xl mb-2">🔗</div>
+                <h3 class="handwritten text-3xl mb-2">puente dev↔sec</h3>
+                <p class="text-base leading-snug">Traducir requisitos de seguridad en decisiones de código, antes de que lleguen a producción.</p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ============ NEXO STUDIO ============ -->
+    <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-16">
+        <div class="flex items-baseline gap-4 mb-8">
+            <span class="sec-num">03</span>
+            <h2 class="handwritten text-5xl md:text-6xl">
+                <span class="scribble-underline">nexo studio</span>
+            </h2>
+        </div>
+
+        <div class="note-card relative max-w-3xl mx-auto" style="background: var(--paper); border-color: var(--ink);">
+            <span class="tape tl" aria-hidden="true"></span>
+            <span class="tape br" aria-hidden="true"></span>
+
+            <p class="font-mono text-xs uppercase tracking-widest text-[color:var(--ink-soft)] mb-2">
+                agencia académica
+            </p>
+            <h3 class="handwritten text-5xl mb-3">Nexo Studio</h3>
+            <p class="text-lg leading-relaxed mb-6">
+                Somos un equipo de diseñadoras, desarrolladoras y estrategas digitales.
+                Como dev front-end del equipo, construyo las interfaces que nuestros clientes ven y usan
+                - con criterio técnico y mirada de seguridad.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="chip">seguridad digital</span>
+                <span class="chip">desarrollo front-end</span>
+                <span class="chip">diseño responsivo</span>
+                <span class="chip">accesibilidad</span>
+            </div>
+
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <p class="font-mono text-sm">
+                    rol: <strong>Desarrolladora Front-end</strong>
+                </p>
+                <a class="sticker" href="https://mrosariopresedo.github.io/nexo-studio/" target="_blank" rel="noopener noreferrer">
+                    visitar nexo ↗
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-20 text-center">
+        <h2 class="handwritten text-6xl md:text-8xl mb-4">
+            ¿<span class="marker">hablamos</span>?
+        </h2>
+        <p class="text-lg text-[color:var(--ink-soft)] max-w-xl mx-auto mb-8">
+            Si querés conversar sobre interfaces, proyectos o el cruce entre front-end y seguridad,
+            escribime.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a href="contacto.html" class="sticker">contactar →</a>
+            <a href="intereses.html" class="sticker outline">conocer más</a>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="relative max-w-5xl mx-auto px-6 md:pl-28 py-12 border-t-2 border-dashed border-[color:var(--ink)] mt-8">
+        <div class="flex flex-wrap items-end justify-between gap-6">
+            <div>
+                <p class="handwritten text-3xl">MRPV<span class="text-[color:var(--margin-red)]">.</span></p>
+                <p class="font-mono text-xs uppercase tracking-widest text-[color:var(--ink-soft)] mt-1">
+                    diseño y desarrollo web - uade 2026
+                </p>
+            </div>
+            <div class="text-right">
+                <p class="text-base">
+                    <a class="ink-link" href="mailto:mpresedo@uade.edu.ar">mpresedo@uade.edu.ar</a>
+                </p>
+                <p class="font-mono text-xs uppercase tracking-widest text-[color:var(--ink-soft)] mt-1">
+                    nexo studio · 2026
+                </p>
+            </div>
+        </div>
+        <p class="text-center text-[color:var(--ink-soft)] mt-8 font-mono text-xs">
+            ✦ hecho a mano con html, css &amp; un toque de cuaderno ✦
+        </p>
     </footer>
 
 </body>

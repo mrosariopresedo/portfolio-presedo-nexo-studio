@@ -330,6 +330,14 @@ html, body {
 }
 .nav-link:hover { color: var(--margin-red); }
 
+/* Visible keyboard focus */
+.sticker:focus-visible,
+.nav-link:focus-visible,
+.ink-link:focus-visible {
+  outline: 3px solid var(--margin-red);
+  outline-offset: 2px;
+}
+
 /* Link styles in body */
 .ink-link {
   color: var(--ink);

@@ -39,7 +39,7 @@ Página principal con presentación personal. Incluye un hero con nombre en tipo
 Sección que presenta los intereses personales y la filosofía de trabajo. Contenido redactado en primera persona con el estilo visual del cuaderno que caracteriza al sitio.
 
 ### Contacto (`contacto.html`)
-Formulario de contacto con campos de nombre, email y mensaje. Incluye dirección de correo directa y enlace al sitio de Nexo Studio.
+Página de contacto vía `mailto:`, sin formulario. Presenta una tarjeta con el correo principal y enlaces `mailto:` (correo directo y "agendar charla"), una tarjeta con la disponibilidad horaria y un bloque que enlaza al sitio de Nexo Studio.
 
 ---
 
@@ -110,13 +110,18 @@ Se usaron tres familias tipográficas importadas desde Google Fonts, cada una co
 
 La paleta se define mediante variables CSS (custom properties) al inicio de `styles.css` y se expresa en formato **hexadecimal**, lo que permite modificar el tema del sitio desde un único lugar.
 
-| Color | Valor HEX | Uso |
+| Variable | Valor HEX | Uso |
 |---|---|---|
-| Crema | `#F5F0E8` | Fondo principal (el "papel") |
-| Tinta oscura | `#2C2416` | Texto principal |
-| Rojo margen | `#C0392B` | Logo, líneas de margen, énfasis |
-| Amarillo highlight | `#FFF59D` | Resaltado tipo marcador |
-| Rosa | `#FFB3C6` | Marcador alternativo |
+| `--paper` | `#faf3e3` | Fondo principal (el "papel") |
+| `--paper-edge` | `#f1e7cf` | Borde del papel / perforaciones |
+| `--ink` | `#1f1b17` | Texto principal |
+| `--ink-soft` | `#4a3f33` | Texto secundario |
+| `--rule` | `#b9cee0` | Líneas horizontales del cuaderno |
+| `--margin-red` | `#d94a3d` | Logo, línea de margen, énfasis y foco |
+| `--highlight` | `#ffe066` | Resaltado tipo marcador (amarillo) |
+| `--marker-pink` | `#ff9bb5` | Marcador alternativo (rosa) |
+
+> El archivo define además temas alternativos (`.theme-pastel`, `.theme-punk`, `.theme-bw`) y de tipografía (`.font-cuaderno`, `.font-serio`, `.font-mono`) que redefinen estas variables; el tema activo por defecto es el de la paleta cálida listada arriba.
 
 **Justificación de las decisiones de color:**
 
@@ -137,6 +142,7 @@ La estructura usa las etiquetas semánticas de HTML5 en lugar de `<div>` genéri
 ```
 <header>    → encabezado con el logo y la navegación principal
 <nav>       → menú con los tres enlaces del sitio
+<main>      → contenido principal de cada página (entre el header y el footer)
 <section>   → bloques temáticos: hero, sobre mí, competencias, Nexo Studio, CTA
 <article>   → cada card de competencia es una unidad de contenido independiente
 <figure>    → la imagen polaroid con su epígrafe (figcaption)
@@ -155,13 +161,13 @@ Los elementos decorativos (perforaciones del cuaderno, cintas washi tape) llevan
 - `aria-hidden="true"` en todos los elementos puramente decorativos.
 - `rel="noopener noreferrer"` en los enlaces externos con `target="_blank"`.
 - `<meta name="description">` con descripción propia en cada página.
+- Foco de teclado visible mediante `:focus-visible` en navegación, "stickers" y enlaces de texto.
+- Contenido principal de cada página envuelto en `<main>`.
 
-**Formulario (`contacto.html`):**
-- `type="email"` en el campo de correo para validación automática del formato.
-- `type="text"` en el campo de nombre y `<textarea>` para el mensaje.
-- `required` en todos los campos obligatorios.
-- `placeholder` en cada campo para orientar al usuario.
-- `<label>` asociados a cada campo con el atributo `for`.
+**Contacto (`contacto.html`):**
+- El contacto se resuelve con enlaces `mailto:`, no hay formulario ni campos de entrada.
+- El enlace "agendar charla" usa `mailto:` con un asunto predefinido (`?subject=...`).
+- El correo se muestra como texto y como enlace, con `break-words` para que no desborde en pantallas chicas.
 
 ---
 
@@ -178,36 +184,38 @@ El CSS propio usa **variables CSS** (custom properties) al inicio del archivo pa
 El modelo de caja está presente en todos los componentes:
 - Las **cards de competencias** tienen `padding` interno para separar el contenido del borde, y un `border` que simula el borde de una nota de papel.
 - Los **post-its** tienen `padding` generoso y `margin` para que no queden pegados entre sí.
-- El **contenedor principal** usa `max-width` y `margin: auto` para centrarse, con `padding` lateral que aumenta en pantallas más grandes.
+- El **contenedor principal** usa el `max-width` y el `margin: auto` de Tailwind (`max-w-5xl mx-auto`) para centrarse, con `padding` lateral que aumenta en pantallas más grandes (`px-6 md:pl-28`).
 
-Al inicio del CSS se usa el **selector universal** con `* { box-sizing: border-box; }` para que el `padding` y el `border` queden incluidos dentro del ancho declarado de cada elemento, facilitando el cálculo del layout.
+El espaciado lateral y la centralización del contenedor se resuelven con utilidades de Tailwind. El CSS propio define el modelo de caja de los componentes de la estética cuaderno (cards, post-its, polaroids, cintas, chips, stamps).
 
 **Propiedad `display`**
 
-- La navegación usa `display: flex` para alinear los ítems del menú en horizontal.
-- Las grillas de cards usan `display: grid` con columnas que se adaptan: una columna en mobile, dos en tablet, tres en escritorio.
-- Los elementos decorativos (perforaciones, cintas) usan `display: block` para ocupar su propio espacio sin interferir con el flujo del texto.
+- Las "perforaciones" del cuaderno (`.holes`) usan `display: flex` con `flex-direction: column` para distribuir los puntos en vertical.
+- Los "stickers" (`.sticker`) usan `display: inline-flex` para alinear texto e ícono.
+- Los marcadores de texto (`.marker`) y los chips (`.chip`) usan `display: inline-block`.
+- La alineación de la navegación y las grillas de cards (1 → 2 → 3 columnas) se resuelven con utilidades `flex` y `grid` de Tailwind directamente en el HTML.
 
 **Pseudoclases y estados de los vínculos**
 
 Los enlaces de navegación y los botones ("stickers") tienen estilos para `:hover` que cambian su apariencia al pasar el cursor. Como los vínculos no heredan el color del texto global, sus estados se definen explícitamente en el CSS.
 
-**Animaciones y transiciones**
+**Transiciones y transformaciones**
 
-Se usaron `@keyframes` y la propiedad `transition` para:
-- Las rotaciones sutiles de las cards al hacer hover (efecto de papel que se mueve).
-- El cambio de color y fondo en los botones al pasar el cursor.
-- Las variaciones de ángulo (`transform: rotate`) que diferencian visualmente cada card.
+Se usaron la propiedad `transition` y `transform` (no hay `@keyframes` en el CSS) para:
+- El movimiento sutil de los "stickers" al hacer hover (`transform: rotate` + `translateY`) con una `transition` suave.
+- El cambio de la sombra de los botones al pasar el cursor.
+- Las variaciones de ángulo (`transform: rotate`) que diferencian visualmente cada card, post-it y polaroid (clases `.tilt-l`, `.tilt-r`, `.rotate-l`, `.rotate-r`).
 
-**Diseño responsive (Mobile First)**
+**Diseño responsive**
 
-El sitio está construido con enfoque **mobile first**: el layout base es de una sola columna (para pantallas pequeñas) y se amplía mediante **media queries** (breakpoints) de Tailwind para pantallas más grandes.
+El comportamiento responsive del layout se resuelve principalmente con los **breakpoints de Tailwind** (`md:`, `lg:`) aplicados como utilidades en el HTML, con enfoque mobile first: el layout base es de una sola columna y se amplía en pantallas más grandes.
 
-Ejemplos concretos:
-- El título del hero es de `64px` en mobile y crece a `112px` en pantallas grandes.
-- La columna lateral del cuaderno (con las perforaciones) solo aparece en pantallas medianas y grandes; en mobile el contenido ocupa todo el ancho.
-- La grilla de competencias pasa de 1 columna → 2 → 3 según el tamaño de pantalla.
+Ejemplos concretos (Tailwind):
+- El título del hero es de `text-5xl` en mobile y crece a `text-[112px]` en pantallas medianas y grandes (`md:`).
+- La grilla de competencias pasa de 1 columna → 2 (`md:`) → 3 (`lg:`) según el tamaño de pantalla.
 - El bloque hero pasa de layout vertical en mobile a dos columnas en pantallas más grandes.
+
+El `styles/styles.css` aporta sólo unas pocas **media queries propias** (`@media (max-width: 768px)`): acercan la línea de margen roja al borde y ocultan la columna de perforaciones (`.holes`) en pantallas chicas, donde el contenido ocupa todo el ancho.
 
 ---
 
@@ -227,13 +235,13 @@ El sitio está dirigido a la profesora de la materia, compañeras del equipo de 
 
 4. **Consistencia y estándares:** la misma estética, los mismos colores y la misma tipografía se mantienen en las tres páginas. Los botones ("stickers") tienen el mismo estilo en todo el sitio.
 
-5. **Prevención de errores:** el formulario valida los campos con `required` y `type="email"` antes de permitir el envío, evitando que el usuario mande un formulario incompleto o con un correo con formato incorrecto.
+5. **Prevención de errores:** el contacto se resuelve con enlaces `mailto:` directos en lugar de un formulario, lo que elimina la posibilidad de errores de validación o de envíos incompletos; el usuario escribe desde su propio cliente de correo.
 
 6. **Reconocimiento en lugar de recuerdo:** la navegación siempre visible y el logo "MRPV." en todas las páginas orientan al usuario constantemente, sin que tenga que recordar la estructura del sitio.
 
 7. **Estética y diseño minimalista:** a pesar de la estética decorativa del cuaderno, cada sección presenta una sola idea principal. Se usa espacio en blanco (`padding` generoso entre secciones) para que el contenido respire y no se sienta sobrecargado de información.
 
-8. **Ayudar a reconocer y recuperarse de errores:** los campos del formulario tienen `placeholder` que describe qué información se espera en cada uno, orientando al usuario antes de que cometa un error.
+8. **Ayudar a reconocer y recuperarse de errores:** los enlaces de contacto indican con claridad su acción ("enviar correo", "agendar charla") y el correo se muestra de forma legible, orientando al usuario sobre qué va a pasar antes de hacer clic.
 
 **Call to Action (CTA)**
 

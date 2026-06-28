@@ -14,46 +14,7 @@
   --tape-3: #ffb3a0;
 }
 
-/* ---- Paper themes (tweakable) ---- */
-.theme-pastel {
-  --paper: #fdf2f8;
-  --paper-edge: #f5dfe9;
-  --ink: #3a1f3a;
-  --ink-soft: #6b3a6b;
-  --rule: #e7c2d6;
-  --margin-red: #d96a8f;
-  --highlight: #c4b5fd;
-  --marker-pink: #fb7185;
-  --tape: #fcd5ce;
-  --tape-2: #c8b6ff;
-  --tape-3: #fae588;
-}
-.theme-punk {
-  --paper: #111111;
-  --paper-edge: #1a1a1a;
-  --ink: #f4f4f4;
-  --ink-soft: #b8b8b8;
-  --rule: #2a2a2a;
-  --margin-red: #00ff88;
-  --highlight: #f6ff00;
-  --marker-pink: #ff2bd6;
-  --tape: #f6ff00;
-  --tape-2: #ff2bd6;
-  --tape-3: #00ff88;
-}
-.theme-bw {
-  --paper: #ffffff;
-  --paper-edge: #ebebeb;
-  --ink: #0a0a0a;
-  --ink-soft: #555555;
-  --rule: #e2e2e2;
-  --margin-red: #ff3b00;
-  --highlight: #ff3b00;
-  --marker-pink: #ff3b00;
-  --tape: #ffd966;
-  --tape-2: #b3b3b3;
-  --tape-3: #ff3b00;
-}
+/* Tema fijo: cálido (definido arriba en :root). */
 
 /* ---- Font themes ---- */
 .font-cuaderno {

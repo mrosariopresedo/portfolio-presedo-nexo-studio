@@ -1,30 +1,63 @@
 <!DOCTYPE html>
+<!-- <!DOCTYPE html> declara que es HTML5 (la versión actual). Va siempre primera. -->
 <html lang="es">
+<!-- lang="es" avisa que la página está en español: ayuda a lectores de pantalla
+     y al buscador. Es un requisito de accesibilidad. -->
 <head>
+    <!-- El <head> NO se ve: son metadatos e instrucciones para el navegador. -->
     <meta charset="UTF-8" />
+    <!-- charset UTF-8 = codificación que permite ñ, tildes y símbolos sin romperse. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- viewport: hace que la página se adapte al ancho real del celular (responsive).
+         Sin esto, el móvil "simula" una pantalla de escritorio y se ve chiquito. -->
     <title>Inicio · María del Rosario Presedo</title>
+    <!-- <title> = texto de la pestaña del navegador y del resultado en Google. -->
     <meta name="description" content="Portfolio de María del Rosario Presedo Valenzuela - Desarrolladora Front-end en Nexo Studio, UADE 2026." />
+    <!-- description: resumen que muestra el buscador debajo del título (SEO). -->
+
+    <!-- preconnect: le avisa al navegador que se va a conectar a Google Fonts,
+         así adelanta la conexión y las fuentes cargan más rápido. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Carga las 3 tipografías desde Google Fonts (CDN): Caveat, Newsreader y JetBrains Mono. -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind por CDN: framework de clases utilitarias (ej. flex, gap, mx-auto).
+         Lo uso para el layout; los componentes propios están en styles.css. -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Mi hoja de estilos propia (tokens + componentes del "cuaderno"). Va última
+         para poder ajustar/pisar cosas si hiciera falta. -->
     <link rel="stylesheet" href="styles/styles.css" />
 </head>
+
+<!-- El <body> es todo lo VISIBLE. class="paper..." aplica el fondo de hoja rayada;
+     min-h-screen (Tailwind) asegura que ocupe al menos el alto de la pantalla. -->
 <body class="paper min-h-screen">
 
-    <!-- Three-hole punch decoration -->
+    <!-- Perforaciones decorativas del cuaderno. aria-hidden="true" las oculta a los
+         lectores de pantalla porque no aportan información, solo estética. -->
     <div class="holes" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span>
     </div>
 
     <!-- ============ NAV ============ -->
+    <!-- <header> = encabezado de la página. Contiene el logo y la navegación. -->
     <header class="relative z-10">
+        <!-- <nav> = región de navegación principal (semántica: el menú del sitio).
+             Clases Tailwind: max-w-5xl (ancho máximo) + mx-auto (centrado) +
+             flex (Flexbox) + items-center (centra vertical) + justify-between
+             (logo a la izquierda, menú a la derecha). -->
         <nav class="max-w-5xl mx-auto px-6 md:pl-28 pt-8 pb-4 flex items-center justify-between">
+            <!-- Logo: es un <a> a index.html (volver al inicio). El punto rojo usa
+                 el token --margin-red vía la sintaxis de color arbitrario de Tailwind. -->
             <a href="index.html" class="handwritten text-4xl md:text-5xl leading-none">
                 MRPV<span class="text-[color:var(--margin-red)]">.</span>
             </a>
+            <!-- Menú como lista <ul>/<li>: semánticamente es una lista de enlaces.
+                 role="list" reafirma esa semántica (algunos navegadores la quitan
+                 al sacarle los puntos con CSS). -->
             <ul class="flex gap-5 md:gap-8 items-center" role="list">
+                <!-- La clase "active" marca la página actual (queda resaltada). -->
                 <li><a href="index.html" class="nav-link active">inicio</a></li>
                 <li><a href="intereses.html" class="nav-link">intereses</a></li>
                 <li><a href="contacto.html" class="nav-link">contacto</a></li>
@@ -32,32 +65,45 @@
         </nav>
     </header>
 
+    <!-- <main> = contenido principal y único de la página. Ayuda a la accesibilidad
+         (permite "saltar al contenido") y a la semántica. -->
     <main>
 
-    <!-- ============ HERO ============ -->
+    <!-- ============ HERO (presentación) ============ -->
+    <!-- <section> = bloque temático de contenido. relative permite ubicar el garabato. -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 pt-8 pb-16">
 
-        <!-- doodle arrow -->
+        <!-- Flecha garabateada (SVG dibujado con líneas). hidden md:block = oculta en
+             celular, visible desde tablet (md). Es decorativa. -->
         <svg class="doodle hidden md:block" style="top: 30px; right: 30px; width:120px;" viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <path d="M5 70 Q 30 5, 90 30" />
             <path d="M75 22 L 90 30 L 82 44" />
         </svg>
 
+        <!-- Epígrafe chico en mayúsculas (mono). tracking-widest = mucho espaciado entre letras. -->
         <p class="font-mono text-xs uppercase tracking-widest text-[color:var(--ink-soft)] mb-4">
             ✦ portfolio · 2026 · uade
         </p>
 
+        <!-- <h1> = título principal, uno solo por página (jerarquía y SEO).
+             text-5xl en celular, text-[112px] enorme en escritorio (responsive). -->
         <h1 class="handwritten text-5xl md:text-[112px] leading-[0.9] mb-6">
             hola, soy<br/>
             <span class="marker">María</span> del Rosario<br/>
             Presedo <span class="text-[color:var(--margin-red)]">✿</span>
         </h1>
 
+        <!-- Grilla de 2 columnas en escritorio (texto más ancho | foto). En celular
+             se apila (queda en 1 columna) porque md: solo aplica desde tablet. -->
         <div class="grid md:grid-cols-[1.4fr_1fr] gap-10 items-start mt-10">
             <div class="space-y-5 text-lg md:text-xl text-[color:var(--ink-soft)] leading-relaxed">
                 <p>
                     Hago <em class="not-italic font-semibold text-[color:var(--ink)]">desarrollo front-end</em>
+                    <!-- <em> da énfasis semántico; le saco la itálica y lo resalto en negrita. -->
                     en <a class="ink-link" href="https://mrosariopresedo.github.io/nexo-studio/" target="_blank" rel="noopener noreferrer">Nexo Studio</a>
+                    <!-- Enlace EXTERNO: target="_blank" abre en pestaña nueva y
+                         rel="noopener noreferrer" es una medida de seguridad (evita que
+                         la pestaña abierta pueda manipular la nuestra vía window.opener). -->
                     y estudio <span class="marker-pink">seguridad informática</span> en UADE.
                 </p>
                 <p>
@@ -65,15 +111,17 @@
                     y pensar en quién va a usar lo que hago.
                 </p>
 
+                <!-- Botones de acción (flex-wrap: bajan de línea si no entran). -->
                 <div class="flex flex-wrap gap-4 pt-2">
                     <a href="contacto.html" class="sticker">hablemos →</a>
                     <a href="intereses.html" class="sticker outline">qué me gusta</a>
                 </div>
             </div>
 
-            <!-- Polaroid -->
+            <!-- Foto en marco polaroid. <figure> + <figcaption> = imagen con su leyenda. -->
             <figure class="polaroid relative max-w-[320px] mx-auto md:ml-auto rotate-r">
                 <span class="tape tl" aria-hidden="true"></span>
+                <!-- alt describe la imagen para quien no la ve (lector de pantalla) y si no carga. -->
                 <img src="img/infografia.jpg" alt="Infografía personal de María del Rosario Presedo" />
                 <figcaption>yo, en versión infografía ✿</figcaption>
             </figure>
@@ -82,6 +130,7 @@
 
     <!-- ============ SOBRE MÍ ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-16">
+        <!-- Encabezado de sección: número grande + <h2> (segundo nivel de jerarquía). -->
         <div class="flex items-baseline gap-4 mb-8">
             <span class="sec-num">01</span>
             <h2 class="handwritten text-5xl md:text-6xl">
@@ -90,9 +139,11 @@
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 items-start">
+            <!-- <article> = contenido con sentido propio (se entendería suelto). -->
             <article class="space-y-4 text-lg leading-relaxed">
                 <p>
                     Soy <strong>desarrolladora front-end</strong> en Nexo Studio. Construyo interfaces
+                    <!-- <strong> = importancia semántica (no solo "negrita visual"). -->
                     con HTML5 y CSS sin frameworks, con foco en semántica, accesibilidad y diseño responsivo.
                 </p>
                 <p>
@@ -105,10 +156,13 @@
                 </p>
             </article>
 
+            <!-- Tres post-its. col-span-2 en el último = ocupa las 2 columnas. -->
             <div class="relative grid grid-cols-2 gap-4">
                 <div class="postit tilt-l">
+                    <!-- El emoji es decorativo => aria-hidden para que el lector no lo lea. -->
                     <div class="text-3xl mb-1" aria-hidden="true">🏗️</div>
                     <strong class="block text-2xl mb-1">estructura</strong>
+                    <!-- El párrafo usa la fuente del cuerpo (el post-it, por defecto, es manuscrito). -->
                     <p class="text-base leading-snug font-normal" style="font-family: var(--font-body)">HTML5 semántico y accesible.</p>
                 </div>
                 <div class="postit green tilt-r">
@@ -125,7 +179,7 @@
         </div>
     </section>
 
-    <!-- ============ COMPETENCIAS ============ -->
+    <!-- ============ COMPETENCIAS (qué sé hacer) ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-16">
         <div class="flex items-baseline gap-4 mb-2">
             <span class="sec-num">02</span>
@@ -137,10 +191,13 @@
             Front-end + seguridad. Dos miradas, un solo código.
         </p>
 
+        <!-- Grilla responsive de tarjetas: 1 columna en celular, 2 en tablet (md),
+             3 en escritorio (lg). Tailwind aplica cada breakpoint de menor a mayor. -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <article class="note-card tilt-l">
                 <div class="text-3xl mb-2" aria-hidden="true">🏗️</div>
+                <!-- <h3> = tercer nivel de jerarquía (dentro de la sección del <h2>). -->
                 <h3 class="handwritten text-3xl mb-2">front-end semántico</h3>
                 <p class="text-base leading-snug">HTML5 con etiquetas de significado real. La base de la accesibilidad, el SEO y un código difícil de explotar.</p>
             </article>
@@ -148,6 +205,7 @@
             <article class="note-card tilt-r">
                 <div class="text-3xl mb-2" aria-hidden="true">🎨</div>
                 <h3 class="handwritten text-3xl mb-2">css y responsivo</h3>
+                <!-- <code> marca texto como fragmento de código (aquí, la regla @media). -->
                 <p class="text-base leading-snug">Interfaces que se adaptan con <code class="font-mono text-sm bg-[color:var(--highlight)] px-1">@media</code>, modelo de caja, sin frameworks.</p>
             </article>
 
@@ -157,6 +215,7 @@
                 <p class="text-base leading-snug">Vectores de ataque front-end: XSS, exposición de datos en el DOM, atributos como <code class="font-mono text-sm bg-[color:var(--highlight)] px-1">rel="noopener"</code>.</p>
             </article>
 
+            <!-- .dashed => borde punteado (variante visual de la tarjeta). -->
             <article class="note-card dashed tilt-r">
                 <div class="text-3xl mb-2" aria-hidden="true">♿</div>
                 <h3 class="handwritten text-3xl mb-2">accesibilidad</h3>
@@ -178,7 +237,7 @@
         </div>
     </section>
 
-    <!-- ============ NEXO STUDIO ============ -->
+    <!-- ============ NEXO STUDIO (mi rol en la consultora) ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-16">
         <div class="flex items-baseline gap-4 mb-8">
             <span class="sec-num">03</span>
@@ -187,6 +246,8 @@
             </h2>
         </div>
 
+        <!-- Tarjeta destacada. Los style= en línea pisan puntualmente el color de fondo
+             y de borde solo para esta tarjeta (resto usa las clases). -->
         <div class="note-card relative max-w-3xl mx-auto" style="background: var(--paper); border-color: var(--ink);">
             <span class="tape tl" aria-hidden="true"></span>
             <span class="tape br" aria-hidden="true"></span>
@@ -201,6 +262,7 @@
                 - con criterio técnico y mirada de seguridad.
             </p>
 
+            <!-- Chips: etiquetas de las áreas. -->
             <div class="flex flex-wrap gap-2 mb-6">
                 <span class="chip">seguridad digital</span>
                 <span class="chip">desarrollo front-end</span>
@@ -212,6 +274,7 @@
                 <p class="font-mono text-sm">
                     rol: <strong>Desarrolladora Front-end</strong>
                 </p>
+                <!-- Enlace al sitio de la consultora (externo => _blank + noopener). -->
                 <a class="sticker" href="https://mrosariopresedo.github.io/nexo-studio/" target="_blank" rel="noopener noreferrer">
                     visitar nexo ↗
                 </a>
@@ -219,7 +282,7 @@
         </div>
     </section>
 
-    <!-- ============ CTA ============ -->
+    <!-- ============ CTA final (invitación a contactar) ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-20 text-center">
         <h2 class="handwritten text-6xl md:text-8xl mb-4">
             ¿<span class="marker">hablamos</span>?
@@ -236,7 +299,8 @@
 
     </main>
 
-    <!-- ============ FOOTER ============ -->
+    <!-- ============ FOOTER (pie de página) ============ -->
+    <!-- <footer> = información de cierre: logo, materia, contacto. border-t-2 dashed = línea punteada arriba. -->
     <footer class="relative max-w-5xl mx-auto px-6 md:pl-28 py-12 border-t-2 border-dashed border-[color:var(--ink)] mt-8">
         <div class="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -247,6 +311,7 @@
             </div>
             <div class="text-right">
                 <p class="text-base">
+                    <!-- mailto: abre el cliente de correo con mi dirección ya cargada. -->
                     <a class="ink-link" href="mailto:mpresedo@uade.edu.ar">mpresedo@uade.edu.ar</a>
                 </p>
                 <p class="font-mono text-xs uppercase tracking-widest text-[color:var(--ink-soft)] mt-1">

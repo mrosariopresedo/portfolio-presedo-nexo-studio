@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- <head>: metadatos. Igual que las otras páginas, con su propio título y descripción. -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacto · María del Rosario Presedo</title>
@@ -17,7 +18,7 @@
         <span></span><span></span><span></span><span></span><span></span>
     </div>
 
-    <!-- NAV -->
+    <!-- NAV: acá "contacto" es la página activa. -->
     <header class="relative z-10">
         <nav class="max-w-5xl mx-auto px-6 md:pl-28 pt-8 pb-4 flex items-center justify-between">
             <a href="index.html" class="handwritten text-4xl md:text-5xl leading-none">
@@ -33,8 +34,9 @@
 
     <main>
 
-    <!-- PAGE HEADER -->
+    <!-- ============ ENCABEZADO DE LA PÁGINA ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 pt-8 pb-8">
+        <!-- Garabato con forma de sobre (SVG) y el texto "¡envíame uno!". Decorativo. -->
         <svg class="doodle hidden md:block" style="top: 30px; right: 80px; width:120px;" viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M10 30 L 110 30 L 110 80 L 10 80 Z" />
             <path d="M10 30 L 60 60 L 110 30" />
@@ -53,14 +55,16 @@
         </p>
     </section>
 
-    <!-- CONTACT CARDS -->
+    <!-- ============ TARJETAS DE CONTACTO ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-12">
 
+        <!-- Dos tarjetas lado a lado en escritorio (correo | disponibilidad). -->
         <div class="grid md:grid-cols-2 gap-8 items-start">
 
-            <!-- Email card - looks like a sealed envelope / note -->
+            <!-- Tarjeta 1: el correo, presentado como una nota con sello. -->
             <article class="note-card tilt-l">
                 <span class="tape tl" aria-hidden="true"></span>
+                <!-- El sello "urgente" se posiciona absoluto respecto de la tarjeta (relative). -->
                 <span class="stamp" style="position:absolute; top:-12px; right:16px;">urgente ♥</span>
 
                 <div class="text-4xl mb-2">✉️</div>
@@ -71,18 +75,21 @@
                     <span class="marker-pink">seguridad web</span> o colaboraciones académicas.
                 </p>
 
+                <!-- Separador punteado + dato de contacto. -->
                 <div class="border-t-2 border-dashed border-[color:var(--ink)] pt-4">
                     <p class="font-mono text-xs uppercase tracking-widest text-[color:var(--ink-soft)] mb-1">
                         escribir a:
                     </p>
+                    <!-- break-words evita que el mail largo desborde en pantallas chicas. -->
                     <p class="handwritten text-2xl md:text-3xl break-words mb-4">
                         <a class="ink-link" href="mailto:mpresedo@uade.edu.ar">mpresedo@uade.edu.ar</a>
                     </p>
+                    <!-- mailto: al tocarlo abre el correo con mi dirección precargada. -->
                     <a href="mailto:mpresedo@uade.edu.ar" class="sticker">enviar correo →</a>
                 </div>
             </article>
 
-            <!-- Availability card - looks like a weekly planner -->
+            <!-- Tarjeta 2: disponibilidad, como una agenda semanal. -->
             <article class="note-card tilt-r dashed">
                 <div class="text-4xl mb-2">🗓️</div>
                 <h3 class="handwritten text-4xl mb-3">disponibilidad</h3>
@@ -91,6 +98,8 @@
                     Si es urgente, indicalo en el asunto.
                 </p>
 
+                <!-- Lista de horarios. Cada <li> usa flex + justify-between: día a la
+                     izquierda, horario a la derecha. Es una lista => uso <ul>/<li>. -->
                 <ul class="space-y-1 mb-5 text-base">
                     <li class="flex justify-between"><span>lun</span><strong class="handwritten text-2xl leading-none">9–18</strong></li>
                     <li class="flex justify-between"><span>mar</span><strong class="handwritten text-2xl leading-none">9–18</strong></li>
@@ -100,12 +109,14 @@
                     <li class="flex justify-between text-[color:var(--ink-soft)]"><span>sáb · dom</span><span class="handwritten text-2xl leading-none italic">descanso ✿</span></li>
                 </ul>
 
+                <!-- mailto con ?subject= => abre el correo con un asunto ya escrito.
+                     El %20 es un espacio codificado para la URL. -->
                 <a href="mailto:mpresedo@uade.edu.ar?subject=Agendar%20una%20charla" class="sticker outline">agendar charla</a>
             </article>
 
         </div>
 
-        <!-- mini note in the margin -->
+        <!-- Nota al margen (post-it) con una aclaración personal. -->
         <div class="mt-10 max-w-md">
             <div class="postit coral tilt-l">
                 <span class="block font-mono text-[10px] uppercase tracking-widest mb-1" style="font-family: var(--font-mono)">p.d.</span>
@@ -114,7 +125,7 @@
         </div>
     </section>
 
-    <!-- NEXO STUDIO -->
+    <!-- ============ NEXO STUDIO (derivar consultas de la consultora) ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-16">
         <div class="flex items-baseline gap-4 mb-8">
             <span class="sec-num">02</span>
@@ -142,6 +153,7 @@
 
             <div class="flex items-center justify-between flex-wrap gap-4">
                 <p class="font-mono text-sm">rol: <strong>Desarrolladora Front-end</strong></p>
+                <!-- Enlace al sitio de la consultora (externo => _blank + noopener noreferrer). -->
                 <a class="sticker" href="https://mrosariopresedo.github.io/nexo-studio/" target="_blank" rel="noopener noreferrer">
                     visitar nexo ↗
                 </a>
@@ -151,7 +163,7 @@
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER: idéntico en las 3 páginas. -->
     <footer class="relative max-w-5xl mx-auto px-6 md:pl-28 py-12 border-t-2 border-dashed border-[color:var(--ink)] mt-8">
         <div class="flex flex-wrap items-end justify-between gap-6">
             <div>

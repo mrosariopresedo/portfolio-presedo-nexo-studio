@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+<!-- Misma base que index.html: HTML5, idioma español. -->
 <head>
+    <!-- <head>: metadatos (no visibles). Idéntico al de index salvo el título y la descripción. -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Intereses · María del Rosario Presedo</title>
@@ -13,11 +15,13 @@
 </head>
 <body class="paper min-h-screen">
 
+    <!-- Perforaciones decorativas (ocultas a lectores de pantalla). -->
     <div class="holes" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span>
     </div>
 
-    <!-- NAV -->
+    <!-- NAV: mismo menú que en todas las páginas. Acá "intereses" lleva la clase
+         "active" porque es la página en la que estoy. -->
     <header class="relative z-10">
         <nav class="max-w-5xl mx-auto px-6 md:pl-28 pt-8 pb-4 flex items-center justify-between">
             <a href="index.html" class="handwritten text-4xl md:text-5xl leading-none">
@@ -33,8 +37,10 @@
 
     <main>
 
-    <!-- PAGE HEADER -->
+    <!-- ============ ENCABEZADO DE LA PÁGINA ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 pt-8 pb-12">
+        <!-- Garabato SVG con un textito "¡mirá!". Decorativo; oculto en celular (hidden md:block).
+             stroke="currentColor" hace que la línea tome el color del CSS (.doodle = rojo). -->
         <svg class="doodle hidden md:block" style="top: 20px; right: 40px; width:140px;" viewBox="0 0 140 80" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <path d="M10 60 Q 40 10, 120 25" />
             <path d="M105 18 L 120 25 L 113 40" />
@@ -44,6 +50,7 @@
         <p class="font-mono text-xs uppercase tracking-widest text-[color:var(--ink-soft)] mb-4">
             ✦ la persona detrás del perfil
         </p>
+        <!-- <h1> único de la página: "mis intereses". -->
         <h1 class="handwritten text-5xl md:text-[112px] leading-[0.9] mb-6">
             mis <span class="marker-pink">intereses</span>
         </h1>
@@ -53,7 +60,7 @@
         </p>
     </section>
 
-    <!-- INTERESES GRID -->
+    <!-- ============ GRILLA DE INTERESES ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-12">
         <div class="flex items-baseline gap-4 mb-10">
             <span class="sec-num">01</span>
@@ -62,12 +69,16 @@
             </h2>
         </div>
 
+        <!-- Grilla de 2 columnas en escritorio; en celular se apila. Cada interés es
+             un <article> (foto + tarjeta). El md:mt-16 alterna la altura para dar el
+             efecto "collage" (unas notas más abajo que otras). -->
         <div class="grid md:grid-cols-2 gap-10">
 
             <!-- Pilates -->
             <article class="space-y-4">
                 <figure class="polaroid relative max-w-md mx-auto rotate-l">
                     <span class="tape tl" aria-hidden="true"></span>
+                    <!-- Imagen externa (Unsplash). El alt describe la escena para accesibilidad. -->
                     <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=400&fit=crop" alt="Persona practicando pilates en un estudio" />
                     <figcaption>pilates ♡ jueves 7pm</figcaption>
                 </figure>
@@ -75,6 +86,7 @@
                     <div class="flex items-baseline gap-2 mb-2">
                         <span class="text-2xl">🧘</span>
                         <h3 class="handwritten text-3xl">pilates &amp; bienestar</h3>
+                        <!-- &amp; es la forma correcta de escribir "&" en HTML (entidad). -->
                     </div>
                     <p class="text-base leading-relaxed">
                         Mi <span class="marker">pausa obligada</span>: una hora sin pantallas, sin notificaciones,
@@ -83,7 +95,7 @@
                 </div>
             </article>
 
-            <!-- DJ -->
+            <!-- DJ / música -->
             <article class="space-y-4 md:mt-16">
                 <figure class="polaroid relative max-w-md mx-auto rotate-r">
                     <span class="tape tr" aria-hidden="true"></span>
@@ -144,13 +156,14 @@
         </div>
     </section>
 
-    <!-- FILOSOFÍA -->
+    <!-- ============ FILOSOFÍA ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-16">
         <div class="flex items-baseline gap-4 mb-8">
             <span class="sec-num">02</span>
             <h2 class="handwritten text-5xl md:text-6xl">filosofía</h2>
         </div>
 
+        <!-- Grilla desbalanceada: 2fr para el texto, 1fr para las notitas (columna angosta). -->
         <div class="grid md:grid-cols-[2fr_1fr] gap-8 items-start">
             <div class="note-card">
                 <span class="tape tl" aria-hidden="true"></span>
@@ -173,6 +186,7 @@
                 </div>
             </div>
 
+            <!-- Columna de post-its con frases (space-y-4 = separación vertical entre ellos). -->
             <div class="space-y-4">
                 <div class="postit tilt-l">
                     "trabajá menos para producir más."
@@ -187,7 +201,7 @@
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ============ CTA final ============ -->
     <section class="relative max-w-5xl mx-auto px-6 md:pl-28 py-20 text-center">
         <h2 class="handwritten text-6xl md:text-8xl mb-4">
             ¿charlamos<br/>algún día?
@@ -200,7 +214,7 @@
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER: idéntico en las 3 páginas (logo, materia, contacto). -->
     <footer class="relative max-w-5xl mx-auto px-6 md:pl-28 py-12 border-t-2 border-dashed border-[color:var(--ink)] mt-8">
         <div class="flex flex-wrap items-end justify-between gap-6">
             <div>

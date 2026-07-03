@@ -1,24 +1,40 @@
-/* ===== Notebook portfolio shared styles ===== */
+/* =========================================================================
+   HOJA DE ESTILOS COMPARTIDA — Portfolio "cuaderno"
+   La usan las 3 páginas (index, intereses, contacto) con un solo <link>.
+   Concepto visual: una hoja de cuaderno escolar (papel crema, líneas,
+   margen rojo, notas pegadas con cinta). Complementa a Tailwind (CDN):
+   Tailwind resuelve el layout con clases utilitarias y acá defino los
+   COMPONENTES propios y los TOKENS de diseño.
+   ========================================================================= */
 
+
+/* -------------------------------------------------------------------------
+   1) TOKENS DE DISEÑO (variables CSS / "custom properties")
+   :root = la raíz del documento (<html>). Todo lo definido acá se hereda a
+   toda la página, así el color y la tipografía se cambian desde UN solo lugar.
+   Los colores van en hexadecimal (#RRGGBB). Esto es el "sistema de diseño".
+   ------------------------------------------------------------------------- */
 :root {
-  --paper: #faf3e3;
-  --paper-edge: #f1e7cf;
-  --ink: #1f1b17;
-  --ink-soft: #4a3f33;
-  --rule: #b9cee0;
-  --margin-red: #d94a3d;
-  --highlight: #ffe066;
-  --marker-pink: #ff9bb5;
-  --tape: #ffeaa8;
+  --paper: #faf3e3;       /* Fondo: crema tipo papel (no blanco puro, cansa menos la vista) */
+  --paper-edge: #f1e7cf;  /* Tono más apagado para bordes y perforaciones */
+  --ink: #1f1b17;         /* "Tinta": color de texto principal (casi negro) */
+  --ink-soft: #4a3f33;    /* Texto secundario, más suave */
+  --rule: #b9cee0;        /* Celeste de las líneas horizontales del cuaderno */
+  --margin-red: #d94a3d;  /* Rojo del margen, el logo, énfasis y el foco de teclado */
+  --highlight: #ffe066;   /* Amarillo del resaltador */
+  --marker-pink: #ff9bb5; /* Resaltador alternativo, rosa */
+  --tape: #ffeaa8;        /* Colores de las cintas / post-its */
   --tape-2: #b8e3c9;
   --tape-3: #ffb3a0;
 
-  /* Tipografías (tema fijo: cuaderno cálido) */
-  --font-display: 'Caveat', cursive;
-  --font-body: 'Newsreader', Georgia, serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  /* Tipografías (tema fijo: cuaderno cálido). Se cargan por Google Fonts en el <head>. */
+  --font-display: 'Caveat', cursive;             /* Manuscrita, para títulos */
+  --font-body: 'Newsreader', Georgia, serif;     /* Serif legible, para el cuerpo */
+  --font-mono: 'JetBrains Mono', monospace;       /* Monoespaciada, para detalles tipo "código" */
 }
 
+/* Estilos base de toda la página: aplico los tokens al fondo, texto y tipografía.
+   font-size base 18px (cómodo de leer) y line-height 1.6 (interlineado amplio). */
 html, body {
   background: var(--paper);
   color: var(--ink);
@@ -27,10 +43,16 @@ html, body {
   line-height: 1.6;
 }
 
-/* Page paper with ruled lines + red margin */
+
+/* -------------------------------------------------------------------------
+   2) LA "HOJA": líneas horizontales + margen rojo
+   El fondo rayado NO es una imagen: es un degradado que se repite (ahorra
+   peso y se ve nítido en cualquier pantalla).
+   ------------------------------------------------------------------------- */
 .paper {
   background:
-    /* horizontal ruled lines */
+    /* Degradado lineal que se repite hacia abajo: 33px transparente + 1px de
+       línea celeste = el renglón del cuaderno, una y otra vez. */
     repeating-linear-gradient(
       to bottom,
       transparent 0,
@@ -38,71 +60,86 @@ html, body {
       var(--rule) 33px,
       var(--rule) 34px
     );
-  position: relative;
+  position: relative; /* Referencia para posicionar el margen rojo (::before) */
 }
 .paper::before {
-  /* vertical red margin line (classroom notebook) */
+  /* Pseudo-elemento: dibuja la línea de margen roja SIN agregar HTML.
+     content:"" es obligatorio para que el pseudo-elemento exista. */
   content: "";
-  position: absolute;
+  position: absolute;   /* Se ubica respecto de .paper (que es relative) */
   left: 88px;
   top: 0;
-  bottom: 0;
+  bottom: 0;            /* top:0 + bottom:0 => ocupa todo el alto */
   width: 1px;
   background: var(--margin-red);
   opacity: .6;
-  pointer-events: none;
+  pointer-events: none; /* Es decorativa: no intercepta clics */
 }
+/* Responsive: en pantallas chicas (celular) el margen se corre hacia la izquierda. */
 @media (max-width: 768px) {
   .paper::before { left: 40px; }
 }
 
-/* Three-hole punch */
+
+/* -------------------------------------------------------------------------
+   3) PERFORACIONES (los 3 agujeros del cuaderno) — decoración
+   ------------------------------------------------------------------------- */
 .holes {
   position: absolute;
   left: 22px;
   top: 0;
   bottom: 0;
   width: 30px;
-  display: flex;
+  display: flex;              /* Flexbox en columna para repartir los círculos */
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-around; /* Espacio parejo entre agujeros */
   padding: 140px 0;
-  pointer-events: none;
+  pointer-events: none;      /* Decorativo, no clickeable */
 }
 .holes span {
   display: block;
   width: 22px;
   height: 22px;
-  border-radius: 999px;
+  border-radius: 999px;      /* Valor alto => círculo perfecto */
   background: var(--paper-edge);
-  box-shadow: inset 0 2px 3px rgba(0,0,0,.18);
+  box-shadow: inset 0 2px 3px rgba(0,0,0,.18); /* Sombra interna: da sensación de hueco */
 }
+/* En celular oculto las perforaciones para no robar espacio. */
 @media (max-width: 768px) {
   .holes { display: none; }
 }
 
-/* Hand-written display */
+
+/* -------------------------------------------------------------------------
+   4) TIPOGRAFÍA MANUSCRITA (títulos)
+   ------------------------------------------------------------------------- */
 .handwritten {
-  font-family: var(--font-display);
+  font-family: var(--font-display); /* Caveat (manuscrita) */
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 0.95;               /* Renglones juntos: se ve más "a mano" */
   letter-spacing: -0.01em;
 }
 
-/* Marker highlighter on text */
+
+/* -------------------------------------------------------------------------
+   5) RESALTADORES (efecto marcador sobre el texto)
+   Truco: un degradado que solo pinta la mitad de abajo de la línea, como
+   cuando pasás un marcador por encima de una palabra.
+   ------------------------------------------------------------------------- */
 .marker {
   background-image: linear-gradient(
     180deg,
-    transparent 55%,
-    var(--highlight) 55%,
+    transparent 55%,          /* Mitad de arriba: sin pintar */
+    var(--highlight) 55%,     /* Desde el 55% para abajo: amarillo */
     var(--highlight) 92%,
-    transparent 92%
+    transparent 92%           /* Deja un respiro abajo */
   );
   padding: 0 .15em;
+  /* Si la palabra resaltada cae en dos renglones, pinta bien los dos: */
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
-.marker-pink {
+.marker-pink { /* Igual que .marker pero en rosa */
   background-image: linear-gradient(
     180deg,
     transparent 55%,
@@ -115,68 +152,80 @@ html, body {
   -webkit-box-decoration-break: clone;
 }
 
-/* Sticker buttons */
+
+/* -------------------------------------------------------------------------
+   6) BOTONES "STICKER" (los llamados a la acción, ej. "hablemos →")
+   Parecen calcomanías pegadas y un poco torcidas.
+   ------------------------------------------------------------------------- */
 .sticker {
-  display: inline-flex;
+  display: inline-flex;      /* Flex en línea: centra el texto y la flecha */
   align-items: center;
   gap: .5rem;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--paper);       /* Texto claro sobre fondo oscuro: buen contraste */
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.6rem;
   line-height: 1;
   padding: .65rem 1.25rem .85rem;
-  border-radius: 999px;
-  text-decoration: none;
-  transform: rotate(-2deg);
-  transition: transform .15s ease, box-shadow .15s ease;
-  box-shadow: 4px 4px 0 var(--margin-red);
+  border-radius: 999px;      /* Píldora */
+  text-decoration: none;     /* Es un <a>, le saco el subrayado */
+  transform: rotate(-2deg);  /* Leve inclinación: estética "pegado a mano" */
+  transition: transform .15s ease, box-shadow .15s ease; /* Animación suave al hover */
+  box-shadow: 4px 4px 0 var(--margin-red); /* Sombra dura roja: efecto "sticker" */
   border: 2px solid var(--ink);
 }
-.sticker:hover {
+.sticker:hover {                       /* Al pasar el mouse: se endereza y "levanta" */
   transform: rotate(-1deg) translateY(-2px);
   box-shadow: 6px 6px 0 var(--margin-red);
 }
-.sticker.outline {
+.sticker.outline {                     /* Variante secundaria: fondo claro, borde oscuro */
   background: var(--paper);
   color: var(--ink);
   box-shadow: 4px 4px 0 var(--ink);
 }
 .sticker.outline:hover { box-shadow: 6px 6px 0 var(--ink); }
 
-/* Washi tape */
+
+/* -------------------------------------------------------------------------
+   7) CINTA "WASHI" (la cinta que sostiene fotos y notas)
+   ------------------------------------------------------------------------- */
 .tape {
-  position: absolute;
+  position: absolute;        /* Se pega en una esquina del elemento padre */
   width: 110px;
   height: 28px;
   background: var(--tape);
-  opacity: .85;
-  z-index: 5;
+  opacity: .85;              /* Semitransparente: parece cinta real */
+  z-index: 5;                /* Por encima de la foto */
   background-image:
-    repeating-linear-gradient(
+    repeating-linear-gradient( /* Rayitas diagonales: textura de la cinta */
       45deg,
       rgba(0,0,0,.06) 0 6px,
       transparent 6px 12px
     );
 }
+/* Cuatro posiciones (top-left, top-right, bottom-left, bottom-right),
+   cada una con distinta inclinación y color para que se vean naturales. */
 .tape.tl { top: -14px; left: -22px; transform: rotate(-12deg); }
 .tape.tr { top: -14px; right: -22px; transform: rotate(8deg); background: var(--tape-2); }
 .tape.bl { bottom: -14px; left: -22px; transform: rotate(10deg); background: var(--tape-3); }
 .tape.br { bottom: -14px; right: -22px; transform: rotate(-8deg); background: var(--tape-2); }
 
-/* Polaroid frame for photos */
+
+/* -------------------------------------------------------------------------
+   8) POLAROID (marco de las fotos)
+   ------------------------------------------------------------------------- */
 .polaroid {
   background: var(--paper);
-  padding: 14px 14px 48px;
+  padding: 14px 14px 48px;   /* Más padding abajo: el "pie" blanco de la foto */
   border: 1px solid rgba(0,0,0,.08);
-  box-shadow:
+  box-shadow:                /* Dos sombras: uua fina + una difusa = profundidad */
     0 1px 0 rgba(0,0,0,.04),
     0 12px 22px -10px rgba(0,0,0,.25);
-  position: relative;
+  position: relative;        /* Para ubicar la cinta y el pie de foto */
 }
-.polaroid img { display: block; width: 100%; height: auto; }
-.polaroid figcaption {
+.polaroid img { display: block; width: 100%; height: auto; } /* Imagen responsive: nunca desborda */
+.polaroid figcaption {       /* La leyenda escrita a mano en el pie de la foto */
   position: absolute;
   bottom: 8px;
   left: 0; right: 0;
@@ -186,52 +235,65 @@ html, body {
   color: var(--ink-soft);
 }
 
-/* Notebook section card */
+
+/* -------------------------------------------------------------------------
+   9) TARJETA "NOTE-CARD" (bloques de contenido tipo ficha)
+   ------------------------------------------------------------------------- */
 .note-card {
   position: relative;
   background: var(--paper);
   border: 2px solid var(--ink);
-  padding: 1.5rem 1.5rem 1.75rem;
-  box-shadow: 6px 6px 0 var(--ink);
+  padding: 1.5rem 1.5rem 1.75rem;      /* Modelo de caja: espacio interior */
+  box-shadow: 6px 6px 0 var(--ink);    /* Sombra dura: estilo "recorte pegado" */
 }
-.note-card.tilt-l { transform: rotate(-.6deg); }
+.note-card.tilt-l { transform: rotate(-.6deg); } /* Modificadores: leve inclinación */
 .note-card.tilt-r { transform: rotate(.5deg); }
-.note-card.dashed { border-style: dashed; box-shadow: 4px 4px 0 var(--margin-red); }
+.note-card.dashed { border-style: dashed; box-shadow: 4px 4px 0 var(--margin-red); } /* Borde punteado + sombra roja */
 
-/* Post-it style */
+
+/* -------------------------------------------------------------------------
+   10) POST-ITS (notitas de colores)
+   ------------------------------------------------------------------------- */
 .postit {
   background: var(--tape);
   padding: 1.25rem 1.25rem 1.5rem;
   box-shadow:
     0 1px 0 rgba(0,0,0,.05),
-    8px 10px 18px -10px rgba(0,0,0,.35);
+    8px 10px 18px -10px rgba(0,0,0,.35); /* Sombra hacia un costado: parece despegado */
   position: relative;
   font-family: var(--font-display);
   font-size: 1.35rem;
   line-height: 1.2;
   color: var(--ink);
 }
-.postit.green { background: var(--tape-2); }
+.postit.green { background: var(--tape-2); } /* Variantes de color */
 .postit.coral { background: var(--tape-3); }
 .postit.tilt-l { transform: rotate(-1.5deg); }
 .postit.tilt-r { transform: rotate(1.2deg); }
 
-/* Doodle helpers */
+
+/* -------------------------------------------------------------------------
+   11) GARABATOS (flechas dibujadas) y SUBRAYADO A MANO
+   ------------------------------------------------------------------------- */
 .doodle {
   position: absolute;
-  pointer-events: none;
-  color: var(--margin-red);
+  pointer-events: none;      /* Decorativo */
+  color: var(--margin-red);  /* El SVG usa currentColor => hereda este rojo */
 }
 .scribble-underline {
+  /* Subrayado ondulado: un SVG embebido directo en el CSS (data URI), sin archivo aparte. */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'><path d='M2 8 Q 30 2, 60 7 T 120 6 T 198 5' fill='none' stroke='%23d94a3d' stroke-width='3' stroke-linecap='round'/></svg>");
   background-repeat: no-repeat;
-  background-position: left bottom;
+  background-position: left bottom; /* El garabato queda debajo del texto */
   background-size: 100% 0.4em;
   padding-bottom: .2em;
 }
 
-/* Stamp */
-.stamp {
+
+/* -------------------------------------------------------------------------
+   12) SELLO ("stamp") y CHIPS (etiquetas)
+   ------------------------------------------------------------------------- */
+.stamp {                     /* Sellito tipo "urgente", inclinado */
   display: inline-block;
   border: 3px double var(--margin-red);
   color: var(--margin-red);
@@ -244,9 +306,7 @@ html, body {
   transform: rotate(-6deg);
   opacity: .85;
 }
-
-/* Tag chip */
-.chip {
+.chip {                      /* Etiqueta redondeada (ej. "accesibilidad") */
   display: inline-block;
   background: var(--paper);
   border: 1.5px solid var(--ink);
@@ -257,7 +317,10 @@ html, body {
   margin: .15rem;
 }
 
-/* Active nav link */
+
+/* -------------------------------------------------------------------------
+   13) NAVEGACIÓN (links del menú)
+   ------------------------------------------------------------------------- */
 .nav-link {
   font-family: var(--font-display);
   font-size: 1.6rem;
@@ -266,7 +329,7 @@ html, body {
   color: var(--ink);
   text-decoration: none;
 }
-.nav-link.active {
+.nav-link.active {           /* La página actual va resaltada con el marcador amarillo */
   background-image: linear-gradient(
     180deg,
     transparent 55%,
@@ -275,30 +338,43 @@ html, body {
     transparent 92%
   );
 }
-.nav-link:hover { color: var(--margin-red); }
+.nav-link:hover { color: var(--margin-red); } /* Feedback al pasar el mouse */
 
-/* Visible keyboard focus */
+
+/* -------------------------------------------------------------------------
+   14) ACCESIBILIDAD: foco visible por teclado
+   Quien navega con Tab tiene que VER dónde está parado. Uso :focus-visible
+   (solo aparece al usar teclado, no al hacer clic) con un contorno rojo claro.
+   ------------------------------------------------------------------------- */
 .sticker:focus-visible,
 .nav-link:focus-visible,
 .ink-link:focus-visible {
   outline: 3px solid var(--margin-red);
-  outline-offset: 2px;
+  outline-offset: 2px;       /* Separa el contorno del elemento, se lee mejor */
 }
 
-/* Link styles in body */
+
+/* -------------------------------------------------------------------------
+   15) ENLACES DENTRO DEL TEXTO
+   Subrayado hecho con un degradado fino (queda más prolijo que el subrayado
+   por defecto y no se pega a las letras con "colita", como la "g").
+   ------------------------------------------------------------------------- */
 .ink-link {
   color: var(--ink);
   text-decoration: none;
   background-image: linear-gradient(var(--margin-red), var(--margin-red));
-  background-size: 100% 2px;
+  background-size: 100% 2px;         /* Línea de 2px de alto */
   background-repeat: no-repeat;
-  background-position: 0 100%;
+  background-position: 0 100%;       /* Pegada abajo */
   padding-bottom: 1px;
   transition: color .15s ease;
 }
 .ink-link:hover { color: var(--margin-red); }
 
-/* Section number */
+
+/* -------------------------------------------------------------------------
+   16) NÚMERO DE SECCIÓN (el "01", "02"... grande en rojo)
+   ------------------------------------------------------------------------- */
 .sec-num {
   font-family: var(--font-display);
   font-size: 5rem;
@@ -307,6 +383,9 @@ html, body {
   opacity: .85;
 }
 
-/* utility */
+
+/* -------------------------------------------------------------------------
+   17) UTILIDADES de inclinación (se combinan con las fotos y tarjetas)
+   ------------------------------------------------------------------------- */
 .rotate-l { transform: rotate(-1.5deg); }
 .rotate-r { transform: rotate(1.5deg); }

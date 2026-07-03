@@ -15,7 +15,7 @@ Sitio web personal de Rosario Presedo, desarrollado para la materia Diseño y De
 ├── intereses.html    → Intereses y filosofía personal
 ├── contacto.html     → Correo y disponibilidad
 ├── styles/
-│   └── styles.css    → Estilos personalizados (patrón cuaderno, animaciones)
+│   └── styles.css    → Estilos personalizados (patrón cuaderno, transiciones)
 └── img/
     └── infografia.jpg
 ```
@@ -175,7 +175,7 @@ Los elementos decorativos (perforaciones del cuaderno, cintas washi tape) llevan
 
 **Arquitectura del CSS**
 
-El sitio combina **Tailwind CSS** (desde CDN) para el layout y los espaciados, con el archivo `styles/styles.css` para los estilos que definen la estética del cuaderno: el patrón de líneas del fondo, los post-its, el efecto polaroid, las cintas washi tape y las animaciones de hover.
+El sitio combina **Tailwind CSS** (desde CDN) para el layout y los espaciados, con el archivo `styles/styles.css` para los estilos que definen la estética del cuaderno: el patrón de líneas del fondo, los post-its, el efecto polaroid, las cintas washi tape y las transiciones de hover.
 
 El CSS propio usa **variables CSS** (custom properties) al inicio del archivo para centralizar todos los colores y fuentes, siguiendo el principio de separación entre estructura (HTML) y presentación (CSS).
 

@@ -12,24 +12,10 @@
   --tape: #ffeaa8;
   --tape-2: #b8e3c9;
   --tape-3: #ffb3a0;
-}
 
-/* Tema fijo: cálido (definido arriba en :root). */
-
-/* ---- Font themes ---- */
-.font-cuaderno {
+  /* Tipografías (tema fijo: cuaderno cálido) */
   --font-display: 'Caveat', cursive;
   --font-body: 'Newsreader', Georgia, serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-.font-serio {
-  --font-display: 'Newsreader', Georgia, serif;
-  --font-body: 'Newsreader', Georgia, serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-.font-mono {
-  --font-display: 'JetBrains Mono', monospace;
-  --font-body: 'JetBrains Mono', monospace;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -324,14 +310,3 @@ html, body {
 /* utility */
 .rotate-l { transform: rotate(-1.5deg); }
 .rotate-r { transform: rotate(1.5deg); }
-
-/* page intro stamp area */
-.page-header-stamp {
-  border: 2px dashed var(--ink);
-  padding: 1rem 1.25rem;
-  background: var(--paper);
-  position: relative;
-}
-
-/* Tweaks panel small overrides for in-design feel */
-.tweaks-trigger { font-family: var(--font-display) !important; }

@@ -121,7 +121,7 @@ La paleta se define mediante variables CSS (custom properties) al inicio de `sty
 | `--highlight` | `#ffe066` | Resaltado tipo marcador (amarillo) |
 | `--marker-pink` | `#ff9bb5` | Marcador alternativo (rosa) |
 
-> El archivo define además temas alternativos (`.theme-pastel`, `.theme-punk`, `.theme-bw`) y de tipografía (`.font-cuaderno`, `.font-serio`, `.font-mono`) que redefinen estas variables; el tema activo por defecto es el de la paleta cálida listada arriba.
+> El sitio usa un **único tema fijo** (la paleta cálida listada arriba). Todas las variables de color y de tipografía se definen una sola vez en `:root`, al inicio de `styles.css`, de modo que el estilo se puede ajustar desde un único lugar.
 
 **Justificación de las decisiones de color:**
 
